@@ -15,7 +15,7 @@ int limitDetect = 1;
 // Motors
 const float siderealRPM = 0.00069634577; // 1.0 / (86164.0905 * (1.0/60.0));
 const float revRatio = 100.0; // Motor revs per output rev
-const int STEPS_PER_REV = 1000;
+const int STEPS_PER_REV = 2000;
 const int MOTOR_INTERVAL = 1009; // How often to rotate the motor
 int MOTOR_SPEED = 1;
 int stepsToRotate = 0;
@@ -38,7 +38,6 @@ void setup() {
   pinMode(limitDetect, INPUT_PULLUP);
 
   digitalWrite(powerLED, HIGH);
-  steppermotor.setSpeed(MOTOR_SPEED);
 }
 
 /* MAIN LOOP
@@ -68,7 +67,8 @@ void returnToStart() {
   digitalWrite(statusLED, statusLEDstate);
 
   // Calculate an appropriate number of steps (# steps in 0.1 seconds)
-  stepsToRotate = (0.1 / 60.0) * MOTOR_SPEED * STEPS_PER_REV;
+  stepsToRotate = (0.1 / 60.0) * MOTOR_SPEED * 5 * STEPS_PER_REV;
+  steppermotor.setSpeed(MOTOR_SPEED * 5);
   while (
     digitalRead(homeDetect) == HIGH &&
     digitalRead(returnModeSwitch) == LOW) {
@@ -85,6 +85,7 @@ activated
 2. Stop, exit function
 */
 void track() {
+  steppermotor.setSpeed(MOTOR_SPEED);
   oldTimeLED = millis();
   oldTimeMotor = millis();
   startTimeMotor = millis();
