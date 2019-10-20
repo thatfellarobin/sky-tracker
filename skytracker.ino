@@ -1,14 +1,15 @@
 #include <Stepper.h>
 
 // LEDs
-int powerLED = 13;
-int statusLED = 12;
+int powerLED = 11;
+int statusLED = 10;
+int limitLED = 9;
 const int BLINK_INTERVAL = 409; // Time for a full on-off cycle
 int statusLEDstate = LOW;
 
 // Switches
-int trackModeSwitch = 11;
-int returnModeSwitch = 10;
+int trackModeSwitch = 13;
+int returnModeSwitch = 12;
 int homeDetect = 0;
 int limitDetect = 1;
 
@@ -32,6 +33,7 @@ unsigned long timeElapsed = 0;
 void setup() {
   pinMode(powerLED, OUTPUT);
   pinMode(statusLED, OUTPUT);
+  pinMode(limitLED, OUTPUT);
   pinMode(trackModeSwitch, INPUT_PULLUP);
   pinMode(returnModeSwitch, INPUT_PULLUP);
   pinMode(homeDetect, INPUT_PULLUP);
@@ -47,6 +49,17 @@ void loop() {
   statusLEDstate = LOW;
   digitalWrite(statusLED, statusLEDstate);
 
+  // Check if limit indicator LED state needs to be changed
+  if (
+    digitalRead(homeDetect) == LOW ||
+    digitalRead(limitDetect) == LOW) {
+      digitalWrite(limitLED, HIGH);
+  }
+  else {
+    digitalWrite(limitLED, LOW);
+  }
+
+  // Call motor movement methods as dictated by switch
   if (digitalRead(trackModeSwitch) == LOW) {
     track();
   }
@@ -74,6 +87,16 @@ void returnToStart() {
     digitalRead(returnModeSwitch) == LOW) {
       // Move motor backwards
       steppermotor.step(-stepsToRotate);
+
+      // Check if limit indicator LED state needs to be changed
+      if (
+        digitalRead(homeDetect) == LOW ||
+        digitalRead(limitDetect) == LOW) {
+          digitalWrite(limitLED, HIGH);
+      }
+      else {
+        digitalWrite(limitLED, LOW);
+      }
   }
 
   return;
@@ -112,6 +135,16 @@ void track() {
         stepsToRotate = (STEPS_PER_REV * revRatio * siderealRPM * (1.0/60.0) * (timeElapsed / 1000.0)) - stepsElapsed;
         steppermotor.step(stepsToRotate);
         stepsElapsed += stepsToRotate;
+      }
+
+      // Check if limit indicator LED state needs to be changed
+      if (
+        digitalRead(homeDetect) == LOW ||
+        digitalRead(limitDetect) == LOW) {
+          digitalWrite(limitLED, HIGH);
+      }
+      else {
+        digitalWrite(limitLED, LOW);
       }
     }
 
