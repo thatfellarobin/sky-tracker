@@ -48,10 +48,10 @@ void loop() {
   statusLEDstate = LOW;
   digitalWrite(statusLED, statusLEDstate);
 
-  if (digitalRead(trackModeSwitch == LOW)) {
+  if (digitalRead(trackModeSwitch) == LOW) {
     track();
   }
-  if (digitalRead(returnModeSwitch == LOW)) {
+  if (digitalRead(returnModeSwitch) == LOW) {
     returnToStart();
   }
 }
@@ -95,7 +95,7 @@ void track() {
       newTime = millis();
 
       // Blink status LED
-      if (newTime - oldTimeLED >= BLINK_INTERVAL / 2) {
+      if (newTime - oldTimeLED >= BLINK_INTERVAL / 2.0) {
         oldTimeLED = newTime;
         statusLEDstate = statusLEDstate == HIGH ? LOW : HIGH;
         digitalWrite(statusLED, statusLEDstate);
