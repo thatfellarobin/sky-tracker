@@ -98,7 +98,7 @@ void track() {
       if (newTime - oldTimeLED >= BLINK_INTERVAL / 2) {
         oldTimeLED = newTime;
         statusLEDstate = statusLEDstate == HIGH ? LOW : HIGH;
-        digitalWrite(statusLED, statusLEDstate)
+        digitalWrite(statusLED, statusLEDstate);
       }
 
       // Move motor forwards
@@ -108,7 +108,7 @@ void track() {
         // Calculate how much the motor should rotate based on
         // time and steps elapsed
         timeElapsed = newTime - startTimeMotor;
-        stepsToRotate = stepsElapsed - (STEPS_PER_REV * revRatio * siderealRPM * (1.0/60.0) * (timeElapsed / 1000.0));
+        stepsToRotate = (STEPS_PER_REV * revRatio * siderealRPM * (1.0/60.0) * (timeElapsed / 1000.0)) - stepsElapsed;
         steppermotor.step(stepsToRotate);
         stepsElapsed += stepsToRotate;
       }
