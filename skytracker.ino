@@ -4,7 +4,7 @@
 int powerLED = 11;
 int statusLED = 10;
 int limitLED = 9;
-const int BLINK_INTERVAL = 409; // Time for a full on-off cycle
+const int BLINK_INTERVAL = 500; // Time for a full on-off cycle
 int statusLEDstate = LOW;
 
 // Switches
@@ -14,10 +14,10 @@ int homeDetect = 0;
 int limitDetect = 1;
 
 // Motors
-const float siderealRPM = 0.00069634577; // 1.0 / (86164.0905 * (1.0/60.0));
+const float siderealRPM = 0.00069634577; // 1.0 / (86164.0905 / 60.0);
 const float revRatio = 100.0; // Motor revs per output rev
 const int STEPS_PER_REV = 2000;
-const int MOTOR_INTERVAL = 1009; // How often to rotate the motor
+const int MOTOR_INTERVAL = 1000; // How often to rotate the motor
 int MOTOR_SPEED = 1;
 int stepsToRotate = 0;
 int stepsElapsed = 0;
