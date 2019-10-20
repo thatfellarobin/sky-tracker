@@ -9,13 +9,13 @@ int statusLEDstate = LOW;
 // Switches
 int trackModeSwitch = 11;
 int returnModeSwitch = 10;
-int homeDetect = 1;
-int limitDetect = 2;
+int homeDetect = 0;
+int limitDetect = 1;
 
 // Motors
 const float siderealRPM = 0.00069634577; // 1.0 / (86164.0905 * (1.0/60.0));
 const float revRatio = 100.0; // Motor revs per output rev
-const int STEPS_PER_REV = 99999;
+const int STEPS_PER_REV = 1000;
 const int MOTOR_INTERVAL = 1009; // How often to rotate the motor
 int MOTOR_SPEED = 1;
 int stepsToRotate = 0;
@@ -76,7 +76,7 @@ void returnToStart() {
       steppermotor.step(-stepsToRotate);
   }
 
-  return
+  return;
 }
 
 /* ROTATE TRACKER AT EARTH SIDEREAL RATE
@@ -114,5 +114,5 @@ void track() {
       }
     }
 
-  return
+  return;
 }
