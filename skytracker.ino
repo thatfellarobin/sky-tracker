@@ -8,14 +8,14 @@ const int BLINK_INTERVAL = 500; // Time for a full on-off cycle
 int statusLEDstate = LOW;
 
 // Switches
-int trackModeSwitch = 13;
-int returnModeSwitch = 12;
+int trackModeSwitch = 3;
+int returnModeSwitch = 2;
 int homeDetect = 0;
 int limitDetect = 1;
 
 // Motors
 const float siderealRPM = 0.00069634577; // 1.0 / (86164.0905 / 60.0);
-const float revRatio = 100.0; // Motor revs per output rev
+const float revRatio = 300.0; // Motor revs per output rev
 const int STEPS_PER_REV = 2000;
 const int MOTOR_INTERVAL = 1000; // How often to rotate the motor
 int MOTOR_SPEED = 1;
