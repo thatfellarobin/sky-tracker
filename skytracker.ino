@@ -112,6 +112,7 @@ void track() {
   oldTimeLED = millis();
   oldTimeMotor = millis();
   startTimeMotor = millis();
+  stepsElapsed = 0;
 
   while (
     digitalRead(limitDetect) == HIGH &&
