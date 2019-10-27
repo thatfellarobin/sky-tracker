@@ -179,14 +179,6 @@ Wire Wire Line
 	4700 2250 4950 2250
 Wire Wire Line
 	6100 3350 5350 3350
-Wire Wire Line
-	5600 3500 5600 3050
-Wire Wire Line
-	5600 3050 5950 3050
-Wire Wire Line
-	5950 3050 5950 1750
-Wire Wire Line
-	5950 1750 5750 1750
 $Comp
 L Device:C C1
 U 1 1 5DB0EE88
@@ -199,38 +191,14 @@ F 3 "~" H 6200 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5950 1750 6200 1750
-Connection ~ 5950 1750
-Wire Wire Line
 	6200 2800 6200 3350
 Wire Wire Line
 	6200 3350 6100 3350
 Connection ~ 6100 3350
-$Comp
-L Motor:Stepper_Motor_unipolar_5pin M1
-U 1 1 5DB117CB
-P 8450 2400
-F 0 "M1" H 8638 2524 50  0000 L CNN
-F 1 "28BYJ-48" H 8638 2433 50  0000 L CNN
-F 2 "" H 8460 2390 50  0001 C CNN
-F 3 "http://www.infineon.com/dgdl/Application-Note-TLE8110EE_driving_UniPolarStepperMotor_V1.1.pdf?fileId=db3a30431be39b97011be5d0aa0a00b0" H 8460 2390 50  0001 C CNN
-	1    8450 2400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8250 2100 8250 1750
 Wire Wire Line
 	6200 1750 6200 2500
 Wire Wire Line
-	8350 1950 8350 2100
-Wire Wire Line
-	8550 2050 8550 2100
-Wire Wire Line
-	8150 2150 8150 2300
-Wire Wire Line
-	8050 2250 8050 2500
-Wire Wire Line
-	8050 2500 8150 2500
+	8400 2250 8400 2350
 Wire Wire Line
 	5750 1950 6650 1950
 Wire Wire Line
@@ -239,9 +207,6 @@ Wire Wire Line
 	5750 2150 7350 2150
 Wire Wire Line
 	5750 2250 7700 2250
-Wire Wire Line
-	6200 1750 8250 1750
-Connection ~ 6200 1750
 $Comp
 L Device:R R7
 U 1 1 5DB2D978
@@ -290,22 +255,22 @@ Wire Wire Line
 	6650 2500 6650 1950
 Connection ~ 6650 1950
 Wire Wire Line
-	6650 1950 8350 1950
+	6650 1950 8750 1950
 Wire Wire Line
 	7000 2500 7000 2050
 Connection ~ 7000 2050
 Wire Wire Line
-	7000 2050 8550 2050
+	7000 2050 8400 2050
 Wire Wire Line
 	7350 2500 7350 2150
 Connection ~ 7350 2150
 Wire Wire Line
-	7350 2150 8150 2150
+	7350 2150 8550 2150
 Wire Wire Line
 	7700 2500 7700 2250
 Connection ~ 7700 2250
 Wire Wire Line
-	7700 2250 8050 2250
+	7700 2250 8400 2250
 $Comp
 L Device:LED D4
 U 1 1 5DB34BAD
@@ -472,23 +437,21 @@ Wire Wire Line
 $Comp
 L Device:Battery BT1
 U 1 1 5DB5A285
-P 3550 2800
-F 0 "BT1" H 3658 2846 50  0000 L CNN
-F 1 "12V" H 3658 2755 50  0000 L CNN
-F 2 "" V 3550 2860 50  0001 C CNN
-F 3 "~" V 3550 2860 50  0001 C CNN
-	1    3550 2800
+P 3550 2500
+F 0 "BT1" H 3658 2546 50  0000 L CNN
+F 1 "12V" H 3658 2455 50  0000 L CNN
+F 2 "" V 3550 2560 50  0001 C CNN
+F 3 "~" V 3550 2560 50  0001 C CNN
+	1    3550 2500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	3550 6000 4850 6000
 Wire Wire Line
-	3550 3000 3550 3050
+	3550 2700 3550 3050
 Connection ~ 3550 3500
 Wire Wire Line
-	3550 2600 4750 2600
-Wire Wire Line
-	4750 2600 4750 3500
+	4750 2800 4750 3500
 Wire Wire Line
 	5350 2750 5350 3050
 Wire Wire Line
@@ -499,4 +462,52 @@ Wire Wire Line
 Connection ~ 5350 3050
 Wire Wire Line
 	5350 3050 5350 3350
+$Comp
+L Motor:Stepper_Motor_bipolar M1
+U 1 1 5DB847A9
+P 8850 2250
+F 0 "M1" H 9038 2374 50  0000 L CNN
+F 1 "Stepper_Motor_bipolar" H 9038 2283 50  0000 L CNN
+F 2 "" H 8860 2240 50  0001 C CNN
+F 3 "http://www.infineon.com/dgdl/Application-Note-TLE8110EE_driving_UniPolarStepperMotor_V1.1.pdf?fileId=db3a30431be39b97011be5d0aa0a00b0" H 8860 2240 50  0001 C CNN
+	1    8850 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8400 2050 8400 1850
+Wire Wire Line
+	8400 1850 8950 1850
+Wire Wire Line
+	8950 1850 8950 1950
+Wire Wire Line
+	8400 2350 8550 2350
+Wire Wire Line
+	5750 1750 6200 1750
+Wire Wire Line
+	3550 1300 4350 1300
+Wire Wire Line
+	6200 1300 6200 1750
+Connection ~ 6200 1750
+$Comp
+L Switch:SW_DPST_x2 SW?
+U 1 1 5DBA78CD
+P 3550 1850
+F 0 "SW?" V 3596 1762 50  0000 R CNN
+F 1 "POWER" V 3505 1762 50  0000 R CNN
+F 2 "" H 3550 1850 50  0001 C CNN
+F 3 "~" H 3550 1850 50  0001 C CNN
+	1    3550 1850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3550 2050 3550 2300
+Wire Wire Line
+	3550 1650 3550 1300
+Wire Wire Line
+	4750 2800 4350 2800
+Wire Wire Line
+	4350 2800 4350 1300
+Connection ~ 4350 1300
+Wire Wire Line
+	4350 1300 6200 1300
 $EndSCHEMATC
